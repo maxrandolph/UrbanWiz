@@ -23,10 +23,12 @@ def read_definition(word_url):
     try:
         definition = soup.find("div","meaning").text
         word = soup.find("a","word").string
+        example = soup.find("div","example").text
     except:
         definition = " isn't defined :O"
         word = "NULL"
-    return [word,definition]
+        example = "NULL"
+    return [word,definition,example]
 
 
 def main():
@@ -43,6 +45,8 @@ def main():
         if retList[0]!="NULL":
 
             print(str(retList[0])+": \n"+"~ "+retList[1][1:])
+
+            print("Example: "+retList[2].replace("\r","\n\n"))
         else:
             print('"'+x+'"'+retList[1])
 
