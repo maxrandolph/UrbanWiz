@@ -25,7 +25,7 @@ def read_definition(word_url):
         word = soup.find("a","word").string
         example = soup.find("div","example").text
     except:
-        definition = " isn't defined :O"
+        definition = " isn't defined :-("
         word = "NULL"
         example = "NULL"
     return [word,definition,example]
@@ -34,9 +34,11 @@ def read_definition(word_url):
 def main():
     print("Type 'exit' to close")
     x = ""
-    while x != "exit":
+    while True:
+	    if x == "exit":
+		    break
         try:
-            x = str(input("What you tryna say? ")).lower().replace(" ","+")
+            x = str(input("What lesson in Urban definitions would you like? ")).lower().replace(" ","+")
         except ValueError:
             print("Sorry, error :(")
         retList=read_definition(get_definition_link(str(x)))
